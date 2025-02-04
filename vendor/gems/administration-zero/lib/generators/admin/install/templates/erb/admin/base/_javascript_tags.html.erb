@@ -60,13 +60,13 @@ const autoThemeIcon = '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  hei
 function setSwitcherIconAndTooltip(theme) {
   if (theme == 'light') {
     themeSwitcher.innerHTML = lightThemeIcon;
-    themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme (current: light)');
+    themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme to dark');
   } else if (theme == 'dark') {
     themeSwitcher.innerHTML = darkThemeIcon;
-    themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme (current: dark)');
+    themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme to system');
   } else {
      themeSwitcher.innerHTML = autoThemeIcon;
-     themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme (current: system)');
+     themeSwitcher.setAttribute('data-bs-original-title', 'Switch theme to light');
   };
 };
 

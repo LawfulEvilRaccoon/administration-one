@@ -21,10 +21,6 @@ class User < ApplicationRecord
     %w[email_address created_at is_admin]
   end
 
-  def avatar_image_path
-    self.avatar.attached? ? rails_blob_path(self.avatar, only_path: true) : "admin/default_avatar.png"
-  end
-
   private
 
   def reattach_avatar_to_user

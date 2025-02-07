@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_one_attached :avatar, service: :avatars_local_storage
+  after_create -> { AttachAvatarToUserJob.perform_later(user: self) }
+  after_update :reattach_avatar_to_user
 
   validates :username,
              length: { minimum: 1, maximum: 255 },
@@ -16,5 +19,20 @@ class User < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     %w[email_address created_at is_admin]
+  end
+
+  def avatar_image_path
+    self.avatar.attached? ? rails_blob_path(self.avatar, only_path: true) : "admin/default_avatar.png"
+  end
+
+  private
+
+  def reattach_avatar_to_user
+    if saved_change_to_attribute?(:username)
+    self.avatar.purge
+    AttachAvatarToUserJob.perform_now(user: self)
+      self.avatar.purge
+      AttachAvatarToUserJob.perform_later(user: self)
+    end
   end
 end

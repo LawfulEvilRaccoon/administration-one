@@ -19,7 +19,11 @@ module Admin
       end
 
       def generate_authentication
-        system "rails generate authentication"
+        system "bin/rails generate authentication"
+      end
+
+      def install_active_storage
+        system "bin/rails active_storage:install"
       end
 
       def remove_default_users_migration
@@ -70,6 +74,10 @@ module Admin
         directory "images", "app/assets/images"
       end
 
+      def create_jobs
+        directory "jobs", "app/jobs"
+      end
+
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
         route "resource  :password_reset", namespace: :admin
@@ -85,6 +93,12 @@ module Admin
         directory "test_unit/controllers", "test/controllers"
         directory "test_unit/models", "test/models"
         copy_file "test_unit/test_helper.rb", "test/test_helper.rb", force: true
+      end
+
+      def add_avatars_storage_config
+        inject_into_file "config/storage.yml", "avatars_local_storage:\n" +
+          "  service: Disk\n" +
+          "  root: <%= Rails.root.join(\"storage\", \"avatar_uploads_\#{Rails.env}\") %>"
       end
     end
   end

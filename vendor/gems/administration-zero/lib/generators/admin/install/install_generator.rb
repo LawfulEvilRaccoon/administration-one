@@ -86,6 +86,9 @@ module Admin
         route "post   'sign_in',  to: 'sessions#create'", namespace: :admin
         route "post 'sign_out', to: 'sessions#destroy'", namespace: :admin
         route "root to: 'admin/home#index'"
+        route 'get "profile", to: "profile#show"', namespace: :admin
+        route 'get "edit_profile", to: "profile#edit", as: "edit_profile"', namespace: :admin
+        route 'patch "profile", to: "profile#update"', namespace: :admin
       end
 
       def create_test_files

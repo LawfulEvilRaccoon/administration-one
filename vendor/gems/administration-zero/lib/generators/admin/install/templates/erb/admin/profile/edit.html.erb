@@ -1,0 +1,48 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body">
+          <h1>Editing profile</h1>
+          
+          <%= form_with model: @user, url: admin_profile_path, method: :patch do |f| %>
+              <div class="form-group mb-2">
+                <%= f.label :username, class: "form-label col-md-3 col-form-label" %>
+                <div class="col-md px-0">
+                  <%= f.text_field :username, class: "form-control" %>
+                  <%= tag.div @user.errors[:username].first.try(:capitalize), class: "invalid-feedback" %>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <%= f.label :email_address, class: "form-label col-md-3 col-form-label" %>
+                <div class="col-md px-0">
+                  <%= f.email_field :email_address, class: "form-control" %>
+                  <%= tag.div @user.errors[:email_address].first.try(:capitalize), class: "invalid-feedback" %>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <%= f.label :password, class: "form-label col-md-3 col-form-label" %>
+                <div class="col-md px-0">
+                  <%= f.password_field :password, class: "form-control" %>
+                  <%= tag.div @user.errors[:password].first.try(:capitalize), class: "invalid-feedback" %>
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <%= f.label :password_confirmation, class: "form-label col-md-3 col-form-label" %>
+                <div class="col-md px-0">
+                  <%= f.password_field :password_confirmation, class: "form-control" %>
+                  <%= tag.div @user.errors[:password_confirmation].first.try(:capitalize), class: "invalid-feedback" %>
+                </div>
+              </div>
+
+          <div class="form-footer">
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+          <% end%>
+        </div>
+      </div>
+    </div>
+</div>

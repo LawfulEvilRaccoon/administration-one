@@ -1,0 +1,22 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="ribbon ribbon-top bg-secondary"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></div>
+        <div class="card-body">
+          <h1>Profile</h1>
+          <%= image_tag path_to_avatar(Current.user), class: "rounded-circle mx-auto d-block", style: "width: 10rem;" %>
+          <h2 class="text-center pt-3 pb-4 text-secondary"><%= "@" + @user.username %></h2>
+          <div class="profile-field pb-2" style="font-size: 1.25rem; line-height: 1.5rem;">
+            <span class="font-weight-bold">Username: </span><span class="text-secondary"><%= @user.username %></span>
+          </div>
+          <div class="profile-field pb-2" style="font-size: 1.25rem; line-height: 1.5rem;">
+            <span class="font-weight-bold">Email: </span><span class="text-secondary"><%= @user.email_address %></span>
+          </div>
+          <div class="form-footer">
+            <%= link_to "Edit profile", admin_edit_profile_path, class: "btn btn-primary w-100" %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <%%= render "page_header" do %>
   <%%= render "page_header_breadcrumb", title: "New <%= human_name.downcase %>" do %>
-    <li class="breadcrumb-item"><%%= link_to "Admin", admin_path %></li>
+    <li class="breadcrumb-item"><%%= link_to "Admin", admin_root_path %></li>
     <li class="breadcrumb-item"><%%= link_to "<%= human_name.pluralize %>", <%= index_helper(type: :path) %> %></li>
   <%% end %>
 <%% end %>

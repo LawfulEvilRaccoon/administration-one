@@ -6,7 +6,7 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
 
   <%- end -%>
   setup do
-    @admin_user = sign_in_admin_as admin_users(:lazaro_nixon)
+    @admin_user = sign_in_as_admin_user users(:admin)
     @<%= singular_table_name %> = <%= fixture_name %>(:one)
   end
 

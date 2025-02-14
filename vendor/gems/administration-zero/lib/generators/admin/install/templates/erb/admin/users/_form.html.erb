@@ -1,9 +1,11 @@
 <%= form_with(model: [:admin, user]) do |form| %>
+
+  <%= render "admin/base/form_errors_messages", resource: user %>
+
   <div class="form-group row mb-2">
     <%= form.label :username, class: "form-label col-md-3 col-form-label" %>
     <div class="col-md px-0">
       <%= form.text_field :username, class: "form-control" %>
-      <%= tag.div user.errors[:username].first.try(:capitalize), class: "invalid-feedback" %>
     </div>
   </div>
 
@@ -11,7 +13,6 @@
     <%= form.label :email_address, class: "form-label col-md-3 col-form-label" %>
     <div class="col-md px-0">
       <%= form.email_field :email_address, autocomplete: "email", class: "form-control" %>
-      <%= tag.div user.errors[:email_address].first.try(:capitalize), class: "invalid-feedback" %>
     </div>
   </div>
 
@@ -19,7 +20,6 @@
     <%= form.label :password, class: "form-label col-md-3 col-form-label" %>
     <div class="col-md px-0">
       <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      <%= tag.div user.errors[:password].first.try(:capitalize), class: "invalid-feedback" %>
     </div>
   </div>
 
@@ -27,7 +27,6 @@
     <%= form.label :password_confirmation, class: "form-label col-md-3 col-form-label" %>
     <div class="col-md px-0">
       <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      <%= tag.div user.errors[:password_confirmation].first.try(:capitalize), class: "invalid-feedback" %>
     </div>
   </div>
 
@@ -39,7 +38,6 @@
       <%else%>
         <%= form.check_box :is_admin, checked: false, class: "form-check-input" %>
       <%end%>
-      <%= tag.div user.errors[:published].first.try(:capitalize), class: "invalid-feedback" %>
     </div>
   </div>
 

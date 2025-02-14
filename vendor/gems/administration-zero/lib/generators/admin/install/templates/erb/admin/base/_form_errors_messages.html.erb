@@ -1,0 +1,10 @@
+  <% if resource.errors.any? %>
+    <div class="text-red pb-1">
+      <h3>The submitted form contains following errors:</h3>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li class="pb-1"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>

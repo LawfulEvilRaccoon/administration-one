@@ -23,6 +23,21 @@ module Admin
         route "resources :#{file_name.pluralize}", namespace: :admin
       end
 
+      def create_navigation_link
+        inject_into_file "app/views/admin/base/_secondary_navbar_links.html.erb", "<!-- Link for #{file_name.pluralize.capitalize} --> \n" +
+        '<li class="nav-item <%= active_nav_item("admin/' + "#{file_name.pluralize}" '") %>">' + "\n" +
+        "  <%= link_to admin_#{file_name.pluralize}_path, class: \"nav-link\" do %>" + "\n" +
+        '    <span class="nav-link-icon d-md-none d-lg-inline-block">' + "\n" +
+        '      <!-- Replace this icon with icon from https://tabler.io/icons -->' + "\n" +
+        '      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-info-hexagon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>' + "\n" +
+        '    </span>' + "\n" +
+        '    <span class="nav-link-title">' + "\n" +
+        "      #{file_name.pluralize.capitalize}\n" +
+        '    </span>' + "\n" +
+        '  <% end %>' + "\n" +
+        '</li>'
+      end
+
       private
         def controller_class_path
           [ "admin" ]

@@ -5,6 +5,8 @@ module Admin
     class ScaffoldGenerator < Rails::Generators::NamedBase
       include Rails::Generators::ResourceHelpers
 
+      remove_class_option :actions
+
       class_option :orm, banner: "NAME", type: :string, required: true, desc: "ORM to generate the controller for"
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
@@ -23,7 +25,7 @@ module Admin
         route "resources :#{file_name.pluralize}", namespace: :admin
       end
 
-      def create_navigation_link
+      def navigation_link
         insert_into_file "app/views/admin/base/_secondary_navbar_links.html.erb", "\n" + <<-EOF
 <!-- Link for #{file_name.pluralize.capitalize} -->
 <li class="nav-item <%= active_nav_item("admin/#{file_name.pluralize}") %>">
@@ -38,6 +40,11 @@ module Admin
   <% end %>
 </li>
 EOF
+
+        if behavior == :revoke
+          regexp = /<!-- Link for #{file_name.pluralize.capitalize}(?:\s*>|\s+(?:(?:[^=\s]*?(?:=(?:(?:"[^"]*?")|(?:'[^']*?')))?)\s*)*>).*?<\/\s*li>/mi
+          gsub_file "app/views/admin/base/_secondary_navbar_links.html.erb", regexp, "", force: true
+        end
       end
 
       private

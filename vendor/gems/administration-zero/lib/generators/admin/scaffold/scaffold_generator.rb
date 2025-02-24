@@ -24,7 +24,7 @@ module Admin
       end
 
       def create_navigation_link
-        inject_into_file "app/views/admin/base/_secondary_navbar_links.html.erb", "<!-- Link for #{file_name.pluralize.capitalize} --> \n" +
+        insert_into_file "app/views/admin/base/_secondary_navbar_links.html.erb", "\n<!-- Link for #{file_name.pluralize.capitalize} --> \n" +
         '<li class="nav-item <%= active_nav_item("admin/' + "#{file_name.pluralize}" '") %>">' + "\n" +
         "  <%= link_to admin_#{file_name.pluralize}_path, class: \"nav-link\" do %>" + "\n" +
         '    <span class="nav-link-icon d-md-none d-lg-inline-block">' + "\n" +

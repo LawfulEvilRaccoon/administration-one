@@ -1,0 +1,13 @@
+.form-group {
+  padding-top: 0.5rem;
+}
+.true {
+  color: var(--tblr-green);
+}
+.false {
+  color: var(--tblr-red);
+}
+
+.theme-switcher {
+  cursor: pointer;
+}

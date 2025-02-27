@@ -78,6 +78,10 @@ module Admin
         directory "jobs", "app/jobs"
       end
 
+      def copy_css_files
+        directory "css", "app/assets/stylesheets/admin"
+      end
+
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
         route "resource  :password_reset", namespace: :admin

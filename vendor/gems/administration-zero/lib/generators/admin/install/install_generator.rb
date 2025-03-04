@@ -111,6 +111,10 @@ module Admin
           "  service: Disk\n" +
           "  root: <%= Rails.root.join(\"storage\", \"avatar_uploads_\#{Rails.env}\") %>"
       end
+
+      def restart_server
+        system "bin/rails restart"
+      end
     end
   end
 end

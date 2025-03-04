@@ -82,6 +82,10 @@ module Admin
         directory "css", "app/assets/stylesheets/admin"
       end
 
+      def copy_javascript
+        directory "js", "app/javascript/admin"
+      end
+
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
         route "resource  :password_reset", namespace: :admin

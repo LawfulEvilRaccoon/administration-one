@@ -14,12 +14,13 @@ module Admin
       source_root File.expand_path("templates", __dir__)
 
       def ask_about_wysiwyg
-          if attributes_names.include?('content')
-            puts "\n" * 2
-            puts "There was attribute named \"content\" passed to generator's options. Do you want to use EditorJS for it?"
-            answer = ask "Type \"Y\" or \"Yes\ to use EditorJS. Or anything else not to use it."
-            ["y", "yes"].include?(answer.downcase) ? @use_editor_js = true : @use_editor_js = false
-          end
+        return if behavior == :revoke
+        if attributes_names.include?('content')
+          puts "\n" * 2
+          puts "There was attribute named \"content\" passed to generator's options. Do you want to use EditorJS for it?"
+          answer = ask "Type \"Y\" or \"Yes\ to use EditorJS. Or anything else not to use it."
+          ["y", "yes"].include?(answer.downcase) ? @use_editor_js = true : @use_editor_js = false
+        end
       end
 
       def copy_files

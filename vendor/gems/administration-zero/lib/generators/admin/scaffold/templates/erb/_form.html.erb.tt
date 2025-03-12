@@ -11,9 +11,7 @@
 <% if attribute.name == "content" && @use_editor_js == true %>
     <%%= form.label :content, class: "form-label col-md-3 col-form-label" %>
     <%%= form.hidden_field :content, id: "editorjs_content_hidden" %>
-    <div class="col-md px-0" id="editorjs_content" data-editor-target="editorjs_content">
-      <%%= form.textarea :content, class: "form-control" %>
-    </div>
+    <div class="col-md px-0 py-3" id="editorjs_content" data-editor-target="editorjs_content">
   </div>
 <% elsif attribute.password_digest? -%>
     <%%= form.label :password, class: "form-label col-md-3 col-form-label" %>

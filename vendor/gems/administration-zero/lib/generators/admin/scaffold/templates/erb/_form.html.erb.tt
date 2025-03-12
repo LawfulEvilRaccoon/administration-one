@@ -1,10 +1,21 @@
+<% if @use_editor_js == true %>
+<%%= form_with(model: <%= model_resource_name %>, data: { controller: "editorjs" }, :html => {:novalidate => true}) do |form| %>
+<% else %>
 <%%= form_with(model: <%= model_resource_name %>) do |form| %>
+<% end %>
 
 <%%= render "admin/base/form_errors_messages", resource: <%= singular_table_name %> %>
 
 <% attributes.each do |attribute| -%>
   <div class="form-group row mb-2">
-<% if attribute.password_digest? -%>
+<% if attribute.name == "content" && @use_editor_js == true %>
+    <%%= form.label :content, class: "form-label col-md-3 col-form-label" %>
+    <%%%= form.hidden_field :content, class: "form-label col-md-3 col-form-label" id: "editorjs_content_hidden" %>
+    <div class="col-md px-0" id="editorjs_content" data-editor-target="editorjs_content">
+      <%%= form.textarea :content, class: "form-control" %>
+    </div>
+  </div>
+<% elsif attribute.password_digest? -%>
     <%%= form.label :password, class: "form-label col-md-3 col-form-label" %>
     <div class="col-md px-0">
       <%%= form.password_field :password, required: true, autocomplete: "new-password", class: "form-control" %>

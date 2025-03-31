@@ -12,12 +12,18 @@ Stimulus.register("editorjs", class extends Controller {
         image: {
           class: ImageTool,
           config: {
-            endpoints: {
-              byFile: "/ejs_image_uploader",
-            },
-            additionalRequestHeaders: {
-              "X-CSRF-Token": this.csrfToken(),
-            },
+            uploader: {
+              uploadByFile(file) {
+                return getBase64(file, function (e) { }).then((data) => {
+                  return {
+                    success: 1,
+                    file: {
+                      url: data
+                    }
+                  }
+                })
+              }
+            }
           },
         },
         header: {
@@ -50,7 +56,7 @@ Stimulus.register("editorjs", class extends Controller {
         },
         code: CodeTool,
         delimiter: Delimiter,
-      },   
+      },
     });
 
     this.element.addEventListener("submit", this.saveEditorData.bind(this));
@@ -83,4 +89,13 @@ Stimulus.register("editorjs", class extends Controller {
     postForm.submit();
   };
 });
+
+function getBase64(file, onLoadCallback) {
+  return new Promise(function (resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function () { return resolve(reader.result); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
 

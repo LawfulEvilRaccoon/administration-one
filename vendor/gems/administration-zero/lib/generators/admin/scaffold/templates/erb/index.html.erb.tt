@@ -32,6 +32,8 @@
               <%% <%= singular_name %>.<%= attribute.column_name %>.each do |<%= attribute.singular_name %>| %>
                 <td><%%= link_to <%= attribute.singular_name %>.filename, <%= attribute.singular_name %> %></td>
               <%% end %>
+<% elsif attribute.name == "content" && @use_editor_js == true %>
+              <td class="col-md-9"><%%= EJSParser::summary_for_ejs_content(content: <%= singular_name %>.content, truncate: 400)%></td>
 <% else -%>
                 <td><%%= <%= singular_name %>.<%= attribute.column_name %> %></td>
 <% end -%>

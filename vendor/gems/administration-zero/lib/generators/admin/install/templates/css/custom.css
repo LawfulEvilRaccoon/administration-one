@@ -11,3 +11,38 @@
 .theme-switcher {
   cursor: pointer;
 }
+
+/* EditorJS */
+
+.ce-paragraph.cdx-block {
+  font-weight: 400;
+}
+
+.ce-toolbar__plus, .ce-toolbar__settings-btn {
+  background-color: var(--tblr-indigo);
+  color: var(--tblr-gray-100);
+}
+
+.ce-toolbar__plus:hover,
+.cdx-settings-button:hover,
+.ce-settings__button:hover,
+.ce-toolbox__button--active,
+.ce-toolbox__button:hover,
+.cdx-button:hover,
+.ce-inline-toolbar__dropdown:hover,
+.ce-inline-tool:hover,
+.ce-popover__item:hover,
+.ce-toolbar__settings-btn:hover {
+  background-color: var(--tblr-indigo-darken);
+  color: var(--tblr-gray-100);
+}
+
+@media (min-width: 768px) {
+  .ce-toolbar__content {
+    max-width: calc(100% - 8rem);
+  }
+  
+  .ce-block__content {
+    max-width: calc(100% - 10rem);
+  }
+}

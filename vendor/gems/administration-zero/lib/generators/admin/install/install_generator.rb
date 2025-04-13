@@ -86,6 +86,16 @@ module Admin
         directory "js", "app/javascript/admin"
       end
 
+      def copy_modules
+        directory "modules", "app/modules"
+      end
+
+      def add_ejs_inflector
+        line = "ActiveSupport::Inflector.inflections "
+        RUBY_VERSION >= "3.4.0" ? line += "{ it.acronym \"EJS\" }" : line += "{ |it| it.acronym \"EJS\" }"
+        inject_into_file "config/initializers/inflections.rb", line
+      end
+
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
         route "resource  :password_reset", namespace: :admin

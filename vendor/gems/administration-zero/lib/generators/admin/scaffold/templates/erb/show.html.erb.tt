@@ -26,8 +26,10 @@
     <%% <%= singular_name %>.<%= attribute.column_name %>.each do |<%= attribute.singular_name %>| %>
           <dd class="col-md-9"><%%= link_to <%= attribute.singular_name %>.filename, <%= attribute.singular_name %> %></dd>
     <%% end %>
+<% elsif attribute.name == "content" && @use_editor_js == true %>
+          <dd class="col-md-9"><%%= EJSParser::build_html_from_ejs_content(content: @<%= singular_name %>.content)%></dd>
 <% else -%>
-          <dd class="col-md-9"><%%= @<%= singular_name %>.<%= attribute.column_name %> %></dd>
+          <dd class="col-md-9"><%%= @<%= singular_name %>.<%= attribute.column_name %>%></dd>
 <% end -%>
 <% end -%>
         </dl>

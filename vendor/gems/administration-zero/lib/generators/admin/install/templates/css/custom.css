@@ -12,6 +12,16 @@
   cursor: pointer;
 }
 
+/* Flash messages */
+
+.toast-body {
+  background-color: var(--tblr-cyan);
+}
+
+[data-bs-theme=dark], .toast-body {
+  background-color: var(--tblr-cyan);
+}
+
 /* EditorJS */
 
 .ce-paragraph.cdx-block {

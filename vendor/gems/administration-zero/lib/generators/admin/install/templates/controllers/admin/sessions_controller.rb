@@ -13,7 +13,7 @@ class Admin::SessionsController < Admin::BaseController
       start_new_session_for user
       redirect_to admin_root_path, notice: "Welcome!"
     else
-      redirect_to admin_sign_in_path, alert: "Try another email address or password."
+      redirect_to admin_sign_in_path, notice: "Try another email address or password."
     end
   end
 

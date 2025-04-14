@@ -21,7 +21,7 @@ class Admin::SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should not sign in with wrong credentials" do
     post admin_sign_in_url, params: { email_address: @user.email_address, password: "Incorect4321" }
     assert_redirected_to admin_sign_in_url
-    assert_equal "Try another email address or password.", flash[:alert]
+    assert_equal "Try another email address or password.", flash[:notice]
 
     get admin_root_url
     assert_redirected_to admin_sign_in_url

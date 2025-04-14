@@ -1,6 +1,6 @@
 class Admin::SessionsController < Admin::BaseController
   skip_before_action :authenticate_as_admin, except: :destroy
-  rate_limit to: 5, within: 10.minutes, only: :create, with: -> { redirect_to admin_sign_in_path, alert: "Try again later." }
+  rate_limit to: 5, within: 10.minutes, only: :create, with: -> { redirect_to admin_sign_in_path, notice: "Try again later." }
 
   layout "admin/authentication"
 

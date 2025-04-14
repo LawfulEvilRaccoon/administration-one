@@ -14,7 +14,7 @@ class Admin::BaseController < ActionController::Base
     def authenticate_as_admin
       resume_session
       unless Current.user && Current.user.is_admin?
-        redirect_to admin_sign_in_path, alert: "Insufficient permissions for this action."
+        redirect_to admin_sign_in_path, notice: "Insufficient permissions for this action."
       end
     end
 end

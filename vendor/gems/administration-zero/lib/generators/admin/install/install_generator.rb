@@ -20,6 +20,10 @@ module Admin
 
       def generate_authentication
         system "bin/rails generate authentication"
+
+        # Rails auth generator makes route that generates routes for index & show actions. This is a quick fix for that.
+        gsub_file "config/routes.rb", "resources :passwords, param: :token",
+                  "resources :passwords, except: %i[ index show ], param: :token"
       end
 
       def install_active_storage
@@ -105,7 +109,6 @@ module Admin
 
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
-        route "resource  :password_reset", namespace: :admin
         route "resources :users", namespace: :admin
         route "get    'sign_in',  to: 'sessions#new'", namespace: :admin
         route "post   'sign_in',  to: 'sessions#create'", namespace: :admin
@@ -114,6 +117,7 @@ module Admin
         route 'get "profile", to: "profile#show"', namespace: :admin
         route 'get "edit_profile", to: "profile#edit", as: "edit_profile"', namespace: :admin
         route 'patch "profile", to: "profile#update"', namespace: :admin
+        route 'resources :passwords, except: %i[ index show ], param: :token', namespace: :admin
       end
 
       def create_test_files

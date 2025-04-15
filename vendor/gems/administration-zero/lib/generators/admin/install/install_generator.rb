@@ -66,10 +66,6 @@ module Admin
         directory "helpers", "app/helpers"
       end
 
-      def create_mailers
-        directory "mailers", "app/mailers"
-      end
-
       def create_images
         directory "images", "app/assets/images"
       end
@@ -96,6 +92,17 @@ module Admin
         inject_into_file "config/initializers/inflections.rb", line
       end
 
+      def add_admin_password_reset_mailer
+        inject_into_class "app/mailers/passwords_mailer.rb", "PasswordsMailer" do
+          "  def reset_admin(user)\n" +
+          "    @user = user\n" +
+          "    mail subject: \"Reset your admin's password\", to: user.email_address\n" +
+          "  end\n\n"
+        end
+
+        directory "passwords_mailer", "app/views/passwords_mailer"
+      end
+
       def add_routes
         route "get '/', to: 'home#index', as: 'root'", namespace: :admin
         route "resource  :password_reset", namespace: :admin
@@ -117,6 +124,7 @@ module Admin
       end
 
       def add_avatars_storage_config
+        empty_directory Rails.root.join("storage", "avatar_uploads_#{Rails.env}")
         inject_into_file "config/storage.yml", "avatars_local_storage:\n" +
           "  service: Disk\n" +
           "  root: <%= Rails.root.join(\"storage\", \"avatar_uploads_\#{Rails.env}\") %>"

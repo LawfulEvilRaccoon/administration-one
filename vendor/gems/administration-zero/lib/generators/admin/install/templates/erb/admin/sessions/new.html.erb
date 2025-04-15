@@ -9,7 +9,7 @@
       <div class="d-flex justify-content-between">
         <%= form.label :password, class: "form-label" %>
         <span class="form-label-description">
-          <%= link_to "I forgot password", new_password_path %>
+          <%= link_to "I forgot password", new_admin_password_path %>
         </span>
       </div>
       <%= form.password_field :password, placeholder: "Password", required: true, autocomplete: "current-password", class:"form-control" %>

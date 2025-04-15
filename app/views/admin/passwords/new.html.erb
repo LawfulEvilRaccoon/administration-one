@@ -1,0 +1,11 @@
+<%= form_with(url: admin_passwords_path, method: :post, class: "card card-md") do |form| %>
+  <div class="card-body">
+    <h1 class="card-title text-center mb-4">Reset your password</h1>
+    <div class="mb-3">
+      <%= form.email_field :email_address, placeholder: "Enter your email address", autofocus: true, required: true, class:"form-control" %>
+    </div>
+    <div class="form-footer">
+      <%= form.submit "Email reset instructions", class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+<% end %>

@@ -8,6 +8,11 @@ class Admin::PasswordsController < Admin::BaseController
   end
 
   def create
+    if user = User.find_by(email_address: params[:email_address])
+      PasswordsMailer.reset_admin(user).deliver_later
+    end
+
+    redirect_to admin_sign_in_path, notice: "Password reset instructions sent (if user with that email address exists)."
   end
 
   def edit

@@ -1,2 +1,16 @@
-<h1>Admin::Passwords#edit</h1>
-<p>Find me in app/views/admin/passwords/edit.html.erb</p>
+<%= form_with(url: edit_admin_password_path(params[:token]), method: :put) do |form| %>
+  <div class="card-body card card-md">
+    <h1 class="card-title text-center mb-4">Reset your password</h1>
+    <div class="mb-3">
+      <%= form.label :password, class: "form-label" %>
+      <%= form.password_field :password, placeholder: "********", autofocus: true, required: true, class:"form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :password_confirmation, class: "form-label" %>
+      <%= form.password_field :password_confirmation, placeholder: "********", autofocus: true, required: true, class:"form-control" %>
+    </div>
+    <div class="form-footer">
+      <%= form.submit "Save", class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+<% end %>

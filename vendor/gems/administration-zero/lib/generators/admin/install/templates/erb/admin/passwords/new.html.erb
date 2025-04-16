@@ -1,5 +1,5 @@
-<%= form_with(url: admin_passwords_path, class: "card card-md") do |form| %>
-  <div class="card-body">
+<%= form_with(url: admin_passwords_path) do |form| %>
+  <div class="card-body card card-md">
     <h1 class="card-title text-center mb-4">Reset your password</h1>
     <div class="mb-3">
       <%= form.email_field :email_address, placeholder: "Enter your email address", autofocus: true, required: true, class:"form-control" %>

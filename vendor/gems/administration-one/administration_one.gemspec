@@ -1,8 +1,8 @@
 require_relative 'lib/administration_one/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "administration-zero"
-  spec.version       = AdministrationZero::VERSION
+  spec.name          = "administration-one"
+  spec.version       = AdministrationOne::VERSION
   spec.authors       = ["Nixon"]
   spec.email         = ["lazaronixon@hotmail.com"]
 

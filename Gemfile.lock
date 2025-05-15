@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    administration-zero (1.0.6)
+    administration-one (1.0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -10,10 +10,11 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-darwin-22
   x86_64-darwin-23
 
 DEPENDENCIES
-  administration-zero!
+  administration-one!
   rake (~> 13.0)
 
 BUNDLED WITH

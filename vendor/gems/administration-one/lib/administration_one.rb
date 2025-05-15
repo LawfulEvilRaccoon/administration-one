@@ -1,4 +1,4 @@
-require_relative "administration_zero/version"
+require_relative "administration_one/version"
 
-module AdministrationZero
+module AdministrationOne
 end

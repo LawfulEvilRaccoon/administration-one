@@ -32,11 +32,10 @@ group :development do
   gem "pry-rails", "~> 0.3.11"
   gem "awesome_print", "~> 1.9"
   gem "rails_live_reload", "~> 0.3.6"
-  gem "administration-zero", path: "./vendor/gems/administration-zero"
+  gem "administration-one", path: "./vendor/gems/administration-one"
 end
 
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-

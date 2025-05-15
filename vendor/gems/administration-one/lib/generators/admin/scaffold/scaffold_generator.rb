@@ -57,6 +57,14 @@ EOF
         end
       end
 
+      def add_ransackable_attributes_to_model
+        file = "app/models/#{singular_table_name}.rb"
+        insertion = "  def self.ransackable_attributes(auth_object = nil)\n    #{attributes_to_array_string}\n  end\n"
+        if File.exist?(file)
+          inject_into_class file, "#{singular_table_name.capitalize}", insertion
+        end
+      end
+
       private
         def controller_class_path
           [ "admin" ]
@@ -92,6 +100,10 @@ EOF
 
         def attributes_string
           attributes_hash.map { |k, v| "#{k}: #{v}" }.join(", ")
+        end
+
+        def attributes_to_array_string
+          '%w[' + attributes_hash.map { |k, _| "#{k}" }.join(" ") + ']'
         end
 
         def attributes_hash

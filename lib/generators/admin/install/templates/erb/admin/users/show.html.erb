@@ -26,6 +26,9 @@
 
           <dt class="col-md-3">Updated at</dt>
           <dd class="col-md-9"><%= l(@user.updated_at, format: :long) %></dd>
+
+          <dt class="col-md-3">Administrator</dt>
+          <dd class="col-md-9"><%= true_or_false_icon(@user.is_admin?) %></dd>
         </dl>
       </div>
     </div>

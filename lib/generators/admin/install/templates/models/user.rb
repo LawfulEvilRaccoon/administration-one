@@ -25,8 +25,6 @@ class User < ApplicationRecord
 
   def reattach_avatar_to_user
     if saved_change_to_attribute?(:username)
-    self.avatar.purge
-    AttachAvatarToUserJob.perform_now(user: self)
       self.avatar.purge
       AttachAvatarToUserJob.perform_later(user: self)
     end

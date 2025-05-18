@@ -1,11 +1,11 @@
 require "open-uri"
 class AttachAvatarToUserJob < ApplicationJob
   queue_as :default
-  
+
   def perform(**args)
     user = args[:user]
     size = 512
-    colors = %w[ 066fd1 ]
+    colors = %w[ 066fd1 ae3ec9 d6336c d63939 f76707 f59f00 0ca678 17a2b8 ]
 
     unless user.nil?
       seed = URI.encode_uri_component user.username

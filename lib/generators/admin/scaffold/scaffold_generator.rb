@@ -15,11 +15,11 @@ module Admin
 
       def ask_about_wysiwyg
         return if behavior == :revoke
-        if attributes_names.include?('content')
+        if attributes_names.include?("content")
           puts "\n" * 2
           puts "There was attribute named \"content\" passed to generator's options. Do you want to use EditorJS for it?"
           answer = ask "Type \"Y\" or \"Yes\ to use EditorJS. Or anything else not to use it."
-          ["y", "yes"].include?(answer.downcase) ? @use_editor_js = true : @use_editor_js = false
+          [ "y", "yes" ].include?(answer.downcase) ? @use_editor_js = true : @use_editor_js = false
         end
       end
 
@@ -61,7 +61,7 @@ EOF
         file = "app/models/#{singular_table_name}.rb"
         insertion = "  def self.ransackable_attributes(auth_object = nil)\n    #{attributes_to_array_string}\n  end\n"
         if File.exist?(file)
-          inject_into_class file, "#{singular_table_name.capitalize}", insertion
+          inject_into_class file, "#{class_name} < ApplicationRecord", insertion, force: true
         end
       end
 
@@ -103,17 +103,17 @@ EOF
         end
 
         def attributes_to_array_string
-          '%w[' + attributes_hash.map { |k, _| "#{k}" }.join(" ") + ']'
+          "%w[" + attributes_hash.map { |k, _| "#{k}" }.join(" ") + "]"
         end
 
         def attributes_hash
           return {} if attributes_names.empty?
 
           attributes_names.filter_map do |name|
-            if %w(password password_confirmation).include?(name) && attributes.any?(&:password_digest?)
-              ["#{name}", '"secret"']
+            if %w[password password_confirmation].include?(name) && attributes.any?(&:password_digest?)
+              [ "#{name}", '"secret"' ]
             elsif !virtual?(name)
-              ["#{name}", "@#{singular_table_name}.#{name}"]
+              [ "#{name}", "@#{singular_table_name}.#{name}" ]
             end
           end.sort.to_h
         end
